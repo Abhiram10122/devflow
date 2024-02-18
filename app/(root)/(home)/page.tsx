@@ -8,51 +8,6 @@ import QuestionCard from "@/components/shared/question/Question";
 import NoResult from "@/components/shared/NoResult";
 import { getQuestions } from "@/lib/actions/question.action";
 
-const questions = [
-  {
-    _id: "1",
-    title: "Cascading deletes in SqlAlchemy",
-    tags: [
-      { _id: "1", name: "Python" },
-      { _id: "2", name: "sql" },
-    ],
-    author: {
-      _id: "john-doe-uuid", // Generated random _id
-      name: "John Doe",
-      picture: "https://example.com/profile-picture.jpg", // Example picture URL
-    },
-    votes: 200000000000,
-    answers: [
-      // Add Answer objects here, ensuring they adhere to the Answer interface definition
-      { _id: "1", content: "Answer 1 for question 1", createdAt: new Date() },
-      // ... more answers
-    ],
-    views: 100,
-    createdAt: new Date("2023-09-01T12:00:00.000Z"),
-  },
-  {
-    _id: "2",
-    title: "How to center a div",
-    tags: [
-      { _id: "1", name: "Javascript" },
-      { _id: "2", name: "CSS" },
-    ],
-    author: {
-      _id: "jane-doe-uuid", // Generated random _id
-      name: "Jane Doe",
-      picture: "https://example.com/jane-doe-picture.jpg", // Example picture URL
-    },
-    votes: 101,
-    answers: [
-      // Add Answer objects here
-      { _id: "2", content: "Answer 1 for question 2", createdAt: new Date() },
-      // ... more answers
-    ],
-    views: 50000000,
-    createdAt: new Date("2021-07-04T12:00:00.000Z"),
-  },
-];
-
 export default async function Home() {
   const result = await getQuestions({});
 

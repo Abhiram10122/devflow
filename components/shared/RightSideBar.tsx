@@ -5,11 +5,11 @@ import RenderTag from "./RenderTag";
 
 const RightSideBar = () => {
   const popularTags = [
-    { _id: 1, name: "Javascript", totalQuestions: 44 },
-    { _id: 2, name: "react", totalQuestions: 32 },
-    { _id: 3, name: "prisma", totalQuestions: 12 },
-    { _id: 4, name: "NextJs", totalQuestions: 55 },
-    { _id: 5, name: "MongoDB", totalQuestions: 13 },
+    { _id: "1", name: "Javascript", totalQuestions: 44 },
+    { _id: "2", name: "react", totalQuestions: 32 },
+    { _id: "3", name: "prisma", totalQuestions: 12 },
+    { _id: "4", name: "NextJs", totalQuestions: 55 },
+    { _id: "5", name: "MongoDB", totalQuestions: 13 },
   ];
   const hotQuestions = [
     {
