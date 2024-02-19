@@ -60,7 +60,7 @@ const QuestionCard = ({
       <div className="flex-between">
         <div>
           <Element
-            imgUrl="/assets/icons/avatar.svg"
+            imgUrl={author.picture}
             alt="user"
             value={author.name}
             title={`- asked ${time}`}

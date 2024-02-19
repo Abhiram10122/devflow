@@ -11,7 +11,8 @@ import { getQuestions } from "@/lib/actions/question.action";
 export default async function Home() {
   const result = await getQuestions({});
 
-  console.log(result.questions);
+  // console.log(result.questions);
+  // console.log(result.questions[0].upvote);
 
   return (
     <main>
@@ -44,7 +45,7 @@ export default async function Home() {
       <HomeFilters />
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {result.questions.length > 1 ? (
+        {result.questions.length > 0 ? (
           result.questions.map((question) => {
             return (
               <QuestionCard
@@ -54,7 +55,7 @@ export default async function Home() {
                 tags={question.tags}
                 author={question.author}
                 createdAt={question.createdAt}
-                votes={question.votes}
+                votes={question.upvote}
                 answers={question.answers}
                 views={question.views}
               />
