@@ -5,8 +5,8 @@ export interface IQuestion extends Document {
   content: string;
   tags: Schema.Types.ObjectId[];
   views: number;
-  upvotes: Schema.Types.ObjectId[];
-  downvotes: Schema.Types.ObjectId[];
+  upvote: Schema.Types.ObjectId[];
+  downvote: Schema.Types.ObjectId[];
   author: Schema.Types.ObjectId;
   answers: Schema.Types.ObjectId[];
   createdAt: Date;

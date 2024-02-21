@@ -55,43 +55,37 @@ const QuestionCard = ({
         })}
       </div>
 
-      <div className="flex-between mt-6 w-full flex-wrap gap-3"></div>
-
-      <div className="flex-between">
-        <div>
-          <Element
-            imgUrl={author.picture}
-            alt="user"
-            value={author.name}
-            title={`- asked ${time}`}
-            href={`/profile/${author._id}`}
-            isAuthor
-            textStyles="small-medium text-dark400_light800"
-          />
-        </div>
-        <div className="flex gap-3">
-          <Element
-            imgUrl="/assets/icons/like.svg"
-            alt="Upvotes"
-            value={formatNumberShort(votes)}
-            title="Votes"
-            textStyles="small-medium text-dark400_light800"
-          />
-          <Element
-            imgUrl="/assets/icons/message.svg"
-            alt="answers"
-            value={formatNumberShort(answers.length)}
-            title="Answers"
-            textStyles="small-medium text-dark400_light800"
-          />
-          <Element
-            imgUrl="/assets/icons/eye.svg"
-            alt="eye"
-            value={formatNumberShort(views)}
-            title="Views"
-            textStyles="small-medium text-dark400_light800"
-          />
-        </div>
+      <div className="flex-between mt-6 w-full flex-wrap gap-3">
+        <Element
+          imgUrl={author.picture}
+          alt="user"
+          value={author.name}
+          title={`- asked ${time}`}
+          href={`/profile/${author._id}`}
+          isAuthor
+          textStyles="small-medium text-dark400_light800"
+        />
+        <Element
+          imgUrl="/assets/icons/like.svg"
+          alt="Upvotes"
+          value={formatNumberShort(votes)}
+          title="Votes"
+          textStyles="small-medium text-dark400_light800"
+        />
+        <Element
+          imgUrl="/assets/icons/message.svg"
+          alt="answers"
+          value={formatNumberShort(answers.length)}
+          title="Answers"
+          textStyles="small-medium text-dark400_light800"
+        />
+        <Element
+          imgUrl="/assets/icons/eye.svg"
+          alt="eye"
+          value={formatNumberShort(views)}
+          title="Views"
+          textStyles="small-medium text-dark400_light800"
+        />
       </div>
     </div>
   );
