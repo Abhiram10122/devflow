@@ -56,5 +56,7 @@ export const formatNumberShort = (num: number): string => {
 
   const finalResult = `${isNegative ? "-" : ""}${formattedNum}${suffix}`;
 
+  console.log(finalResult);
+
   return finalResult;
 };
