@@ -6,6 +6,7 @@ import { connectToDatabase } from "../mongoose";
 import {
   CreateQuestionParams,
   GetQuestionByIdParams,
+  GetQuestionsByTagIdParams,
   GetQuestionsParams,
   QuestionVoteParams,
 } from "./shared.types";
@@ -54,8 +55,8 @@ export async function createQuestion(params: CreateQuestionParams) {
         {
           name: { $regex: new RegExp(`^${tag}$`, "i") },
         },
-        { $setOnInsert: { name: tag }, $push: { question: question._id } },
-        { upsert: true, new: true },
+        { $setOnInsert: { name: tag }, $push: { questions: question._id } },
+        { upsert: true, new: true }
       );
 
       tagDocuments.push(existingTag._id);
