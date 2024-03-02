@@ -1,10 +1,10 @@
 import NoResult from "@/components/shared/NoResult";
 import QuestionCard from "@/components/shared/question/Question";
 import LocalSearchBar from "@/components/shared/search/LocalSearchBar";
-import { QuestionFilters } from "@/constants/filters";
+// import { QuestionFilters } from "@/constants/filters";
 import { getQuestionsByTagId } from "@/lib/actions/tag.action";
 import { URLProps } from "@/types";
-import { Filter } from "lucide-react";
+// import { Filter } from "lucide-react";
 import React from "react";
 
 const TagDetailsPage = async ({ params, searchParams }: URLProps) => {

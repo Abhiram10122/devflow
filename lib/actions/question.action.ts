@@ -6,7 +6,7 @@ import { connectToDatabase } from "../mongoose";
 import {
   CreateQuestionParams,
   GetQuestionByIdParams,
-  GetQuestionsByTagIdParams,
+  // GetQuestionsByTagIdParams,
   GetQuestionsParams,
   QuestionVoteParams,
 } from "./shared.types";
