@@ -60,3 +60,25 @@ export const formatNumberShort = (num: number): string => {
 
   return finalResult;
 };
+
+export function getMonthYear(date: Date): string {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const monthIndex = date.getMonth(); // Get the month index (0-11)
+  const year = date.getFullYear(); // Get the full year
+
+  return `${monthNames[monthIndex]} ${year}`; // Use template literal for formatting
+}
