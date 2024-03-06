@@ -3,6 +3,8 @@ import Element from "./Metric";
 import RenderTag from "../RenderTag";
 import Link from "next/link";
 import { getTimeStamp, formatNumberShort } from "@/lib/utils";
+import { SignedIn } from "@clerk/nextjs";
+import EditDeleteAction from "../EditDeleteAction";
 
 interface QuestionProps {
   _id: string;
@@ -20,9 +22,11 @@ interface QuestionProps {
   answers: Array<object>;
   views: number;
   createdAt: Date;
+  clerkId?: string | null;
 }
 
 const QuestionCard = ({
+  clerkId,
   _id,
   title,
   tags,
@@ -33,6 +37,7 @@ const QuestionCard = ({
   views,
 }: QuestionProps) => {
   const time = getTimeStamp(createdAt);
+  const showActionButtons = clerkId && clerkId === author.clerkId;
 
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
@@ -47,6 +52,12 @@ const QuestionCard = ({
             </h3>
           </Link>
         </div>
+
+        <SignedIn>
+          {showActionButtons && (
+            <EditDeleteAction type="Question" itemId={JSON.stringify(_id)} />
+          )}
+        </SignedIn>
       </div>
 
       <div className="mt-3.5 flex flex-wrap gap-2">
