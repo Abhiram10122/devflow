@@ -39,10 +39,12 @@ const UserCard = async ({ user }: UserProps) => {
 
         <div className="mt-4 text-center">
           <h3 className="h3-bold text-dark300_light900 line-clamp-1">
-            Sujata | JS Mastery
+            {user.name}
           </h3>
 
-          <p className="text-dark500_light500 body-regular mt-2">@sujata</p>
+          <p className="text-dark500_light500 body-regular mt-2">
+            @{user.username}
+          </p>
         </div>
 
         <div className="mt-5">

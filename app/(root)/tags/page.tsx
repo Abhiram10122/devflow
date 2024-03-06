@@ -5,16 +5,19 @@ import Filter from "@/components/shared/Filter";
 import React from "react";
 import { getAllTags } from "@/lib/actions/tag.action";
 import NoResult from "@/components/shared/NoResult";
+import { SearchParamsProps } from "@/types";
 
-const TagsPage = async () => {
-  const result = await getAllTags({});
+const TagsPage = async ({ searchParams }: SearchParamsProps) => {
+  const result = await getAllTags({
+    searchQuery: searchParams.q,
+  });
 
   return (
     <div>
       <h1 className="h1-bold text-dark100_light900">All Tags</h1>
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col">
         <LocalSearchBar
-          route="/tags"
+          route={`/tags`}
           iconPosition="left"
           imgSrc="/assets/icons/search.svg"
           placeholder="Search for amazing tags"
