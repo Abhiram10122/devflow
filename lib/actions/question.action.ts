@@ -41,6 +41,23 @@ export async function getQuestions(params: GetQuestionsParams) {
   }
 }
 
+export async function getHotQuestions(params: GetQuestionsParams) {
+  try {
+    connectToDatabase();
+
+    const questions = await Question.find({})
+      .sort({ views: -1, upvote: -1 })
+      .limit(5)
+      .populate({ path: "tags", model: Tag })
+      .populate({ path: "author", model: User });
+
+    return { questions };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export async function createQuestion(params: CreateQuestionParams) {
   try {
     connectToDatabase();
