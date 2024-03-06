@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import RenderTag from "./RenderTag";
 import { getHotQuestions } from "@/lib/actions/question.action";
-import { get } from "http";
 import { getPopularTags } from "@/lib/actions/tag.action";
 
 const RightSideBar = async () => {
