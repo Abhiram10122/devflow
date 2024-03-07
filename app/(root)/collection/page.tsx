@@ -6,6 +6,7 @@ import NoResult from "@/components/shared/NoResult";
 import { getSavedQuestions } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
 import { SearchParamsProps } from "@/types";
+import Pagniation from "@/components/shared/Pagniation";
 
 export default async function Collections({ searchParams }: SearchParamsProps) {
   const { userId } = auth();
@@ -15,6 +16,7 @@ export default async function Collections({ searchParams }: SearchParamsProps) {
   const result = await getSavedQuestions({
     searchQuery: searchParams.q,
     filter: searchParams.filter,
+    page: searchParams.page ? +searchParams.page : 1,
     clerkId: userId,
   });
 
@@ -64,6 +66,13 @@ export default async function Collections({ searchParams }: SearchParamsProps) {
             linkTitle="Ask a Question"
           />
         )}
+      </div>
+
+      <div className="mt-10">
+        <Pagniation
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
       </div>
     </main>
   );

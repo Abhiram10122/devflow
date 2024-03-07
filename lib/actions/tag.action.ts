@@ -32,7 +32,9 @@ export async function getAllTags(params: GetAllTagsParams) {
   try {
     connectToDatabase();
 
-    const { searchQuery, filter } = params;
+    const { searchQuery, filter, page = 1, pageSize = 20 } = params;
+
+    const skipAmount = (page - 1) * pageSize;
 
     const query: FilterQuery<typeof Tag> = {};
 
@@ -59,9 +61,15 @@ export async function getAllTags(params: GetAllTagsParams) {
         break;
     }
 
-    const tags = await Tag.find(query).sort(sortQuery);
+    const tags = await Tag.find(query)
+      .sort(sortQuery)
+      .skip(skipAmount)
+      .limit(pageSize);
 
-    return { tags };
+    const totalTags = await Tag.countDocuments(query);
+    const isNext = totalTags > skipAmount + tags.length;
+
+    return { tags, isNext };
   } catch (error) {
     console.log(error);
     throw error;
@@ -71,7 +79,9 @@ export async function getAllTags(params: GetAllTagsParams) {
 export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
   try {
     connectToDatabase();
-    const { tagId, searchQuery } = params;
+    const { tagId, searchQuery, page = 1, pageSize = 1 } = params;
+
+    const skipAmount = (page - 1) * pageSize;
 
     const tagFilter: FilterQuery<ITag> = { _id: tagId };
 
@@ -83,6 +93,8 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
         : {},
       options: {
         sort: { createdAt: -1 },
+        skip: skipAmount,
+        limit: pageSize + 1,
       },
       populate: [
         { path: "tags", model: Tag, select: "name _id" },
@@ -92,24 +104,10 @@ export async function getQuestionsByTagId(params: GetQuestionsByTagIdParams) {
 
     if (!tag) throw new Error("No tag found");
 
-    const tagQuestions = tag.questions;
+    const questions = tag.questions.slice(0, pageSize);
+    const isNext = tag.questions.length > pageSize;
 
-    return { tagTitle: tag.name, questions: tagQuestions };
-
-    // const tag = await Tag.find({ tags: tagId }).populate({
-    //   path: "questions",
-    //   options: { sort: { createdAt: -1 } },
-    //   populate: [
-    //     { path: "author", model: User, select: "_id clerkId name picture" },
-    //     { path: "tags", model: Tag, select: "name _id" },
-    //   ],
-    // });
-
-    // if (!tag) throw new Error("No tag found");
-
-    // const questions = tag.questions;
-
-    // return { questions };
+    return { tagTitle: tag.name, questions, isNext };
   } catch (error) {
     console.log(error);
     throw error;

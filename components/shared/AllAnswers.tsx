@@ -7,6 +7,7 @@ import Image from "next/image";
 import { getTimeStamp } from "@/lib/utils";
 import ParseHTML from "./ParseHTML";
 import Votes from "./Votes";
+import Pagniation from "./Pagniation";
 // import Votes from "./Votes";
 
 interface Props {
@@ -82,6 +83,10 @@ const AllAnswers = async ({
             </article>
           );
         })}
+      </div>
+
+      <div className="mt-10">
+        <Pagniation pageNumber={page ? +page : 1} isNext={result.isNext} />
       </div>
     </div>
   );
