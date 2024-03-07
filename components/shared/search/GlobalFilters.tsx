@@ -1,0 +1,65 @@
+import { Button } from "@/components/ui/button";
+import { GlobalSearchFilters } from "@/constants/filters";
+import { formUrlQuery } from "@/lib/utils";
+import { SearchParamsProps } from "@/types";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useState } from "react";
+
+const filters = [
+  { type: "question", label: "Question" },
+  { type: "answer", label: "Answer" },
+  { type: "user", label: "User" },
+  { type: "tag", label: "Tag" },
+];
+
+const GlobalFilters = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const typeParams = searchParams.get("type");
+
+  const [active, setActive] = useState(typeParams || "");
+
+  const handleTypeClick = (item: string) => {
+    if (active === item) {
+      setActive("");
+      const newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "type",
+        value: null,
+      });
+
+      router.push(newUrl, { scroll: false });
+    } else {
+      setActive(item);
+      const newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "type",
+        value: item.toLowerCase(),
+      });
+      router.push(newUrl, { scroll: false });
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-5 px-5">
+      <p className="text-dark400_light800 body-medium">Type: </p>
+      <div className="flex gap-3">
+        {GlobalSearchFilters.map((item) => {
+          return (
+            <Button
+              key={item.value}
+              type="button"
+              className={`small-medium light-border-2 text-dark400_light800 rounded-2xl px-5 py-2 capitalize dark:hover:text-primary-500 ${active === item.value ? "bg-primary-500 text-light-900" : "bg-light-700 text-dark-400 hover:text-primary-500 dark:bg-dark-500"}`}
+              onClick={() => handleTypeClick(item.value)}
+            >
+              {item.name}
+            </Button>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default GlobalFilters;
