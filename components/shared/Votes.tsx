@@ -11,6 +11,7 @@ import { formatNumberShort } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   type: string;
@@ -41,9 +42,21 @@ const Votes = ({
       questionId: JSON.parse(itemId),
       path: pathname,
     });
+
+    return toast({
+      title: `Saved ${!hasSaved ? "Successfully" : "Removed"}`,
+      variant: !hasSaved ? "default" : "destructive",
+    });
   };
 
   const handleVote = async (action: string) => {
+    if (!userId) {
+      return toast({
+        title: "Please login",
+        description: "You must be logged in to vote.",
+      });
+    }
+
     if (type === "Question") {
       if (action === "upvote") {
         await upVoteQuestion({
@@ -53,6 +66,11 @@ const Votes = ({
           hasdownVoted,
           path: pathname,
         });
+
+        return toast({
+          title: `Upvote ${!hasupVoted ? "successful" : "removed"}`,
+          variant: !hasupVoted ? "default" : "destructive",
+        });
       } else {
         await downVoteQuestion({
           questionId: JSON.parse(itemId),
@@ -60,6 +78,11 @@ const Votes = ({
           hasupVoted,
           hasdownVoted,
           path: pathname,
+        });
+
+        return toast({
+          title: `Downvote ${!hasdownVoted ? "successful" : "removed"}`,
+          variant: hasdownVoted ? "default" : "destructive",
         });
       }
     } else if (type === "Answer") {
@@ -71,6 +94,11 @@ const Votes = ({
           hasdownVoted,
           path: pathname,
         });
+
+        return toast({
+          title: `Upvote ${!hasupVoted ? "successful" : "removed"}`,
+          variant: !hasupVoted ? "default" : "destructive",
+        });
       } else {
         await downVoteAnswer({
           answerId: JSON.parse(itemId),
@@ -78,6 +106,11 @@ const Votes = ({
           hasupVoted,
           hasdownVoted,
           path: pathname,
+        });
+
+        return toast({
+          title: `Downvote ${!hasdownVoted ? "successful" : "removed"}`,
+          variant: hasdownVoted ? "default" : "destructive",
         });
       }
     }
