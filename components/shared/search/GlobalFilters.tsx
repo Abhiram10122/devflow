@@ -1,16 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { GlobalSearchFilters } from "@/constants/filters";
 import { formUrlQuery } from "@/lib/utils";
-import { SearchParamsProps } from "@/types";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
-
-const filters = [
-  { type: "question", label: "Question" },
-  { type: "answer", label: "Answer" },
-  { type: "user", label: "User" },
-  { type: "tag", label: "Tag" },
-];
 
 const GlobalFilters = () => {
   const router = useRouter();
