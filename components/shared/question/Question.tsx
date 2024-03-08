@@ -17,6 +17,7 @@ interface QuestionProps {
     _id: string;
     name: string;
     picture: string;
+    clerkId: string;
   };
   votes: number;
   answers: Array<object>;
@@ -76,27 +77,30 @@ const QuestionCard = ({
           isAuthor
           textStyles="small-medium text-dark400_light800"
         />
-        <Element
-          imgUrl="/assets/icons/like.svg"
-          alt="Upvotes"
-          value={formatNumberShort(votes)}
-          title="Votes"
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Element
-          imgUrl="/assets/icons/message.svg"
-          alt="answers"
-          value={formatNumberShort(answers.length)}
-          title="Answers"
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Element
-          imgUrl="/assets/icons/eye.svg"
-          alt="eye"
-          value={formatNumberShort(views)}
-          title="Views"
-          textStyles="small-medium text-dark400_light800"
-        />
+
+        <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
+          <Element
+            imgUrl="/assets/icons/like.svg"
+            alt="Upvotes"
+            value={formatNumberShort(votes)}
+            title="Votes"
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Element
+            imgUrl="/assets/icons/message.svg"
+            alt="answers"
+            value={formatNumberShort(answers.length)}
+            title="Answers"
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Element
+            imgUrl="/assets/icons/eye.svg"
+            alt="eye"
+            value={formatNumberShort(views)}
+            title="Views"
+            textStyles="small-medium text-dark400_light800"
+          />
+        </div>
       </div>
     </div>
   );
