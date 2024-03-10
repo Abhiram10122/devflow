@@ -1,9 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import RenderTag from "../shared/RenderTag";
 import Link from "next/link";
-// import { getTopInteractedTags } from "@/lib/actions/tag.action";
-import { Badge } from "../ui/badge";
 
 interface UserProps {
   user: {
@@ -16,12 +13,12 @@ interface UserProps {
 }
 
 const UserCard = async ({ user }: UserProps) => {
-  // const interactedTags = await getTopInteractedTags({userId: user._id})
-  const interactedTags = [
-    { id: 1, name: "Html" },
-    { id: 2, name: "css" },
-    { id: 3, name: "java" },
-  ];
+  // const interactedTags = await getTopInteractedTags({ userId: user._id });
+  // const interactedTags = [
+  //   { id: 1, name: "Html" },
+  //   { id: 2, name: "css" },
+  //   { id: 3, name: "java" },
+  // ];
 
   return (
     <Link
@@ -47,7 +44,7 @@ const UserCard = async ({ user }: UserProps) => {
           </p>
         </div>
 
-        <div className="mt-5">
+        {/* <div className="mt-5">
           {interactedTags.length > 0 ? (
             <div className="flex items-center gap-2">
               {interactedTags.map((tag) => {
@@ -63,7 +60,7 @@ const UserCard = async ({ user }: UserProps) => {
           ) : (
             <Badge>No tags yet</Badge>
           )}
-        </div>
+        </div> */}
       </article>
     </Link>
   );
