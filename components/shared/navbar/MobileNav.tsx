@@ -75,7 +75,7 @@ const MobileNav = () => {
             alt="DevFlow"
           />
           <p className="h2-bold text-dark100_light900">
-            Dev <span className="text-primary-500">OverFlow</span>
+            Campus <span className="text-primary-500">Queries</span>
           </p>
         </Link>
 
